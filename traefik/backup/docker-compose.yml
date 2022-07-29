@@ -9,3 +9,8 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - docker4drupal_default
+networks:        
+  docker4drupal_default:
+    external: true

@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: $DB_PASSWORD
     volumes:
      - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
-#     - ./mysql:/var/lib/mysql # Use bind moun
+     - drupal-mariadb:/var/lib/mysql # Use bind moun
 
   php:
     image: wodby/drupal-php:$PHP_TAG
@@ -318,3 +318,11 @@ services:
 #  drupal:
 ## For Xdebug profiler
 #  files:
+#
+volumes:
+  drupal-mariadb:
+
+networks:
+  default:
+    external:
+      name: traefik_default
