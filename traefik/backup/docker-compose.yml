@@ -1,16 +1,19 @@
 version: '3'
 
 services:
-  reverse-proxy:
+  traefik:
     image: traefik:v2.8
-    command: --api.insecure=true --providers.docker
+    command: --api.insecure=true --providers.docker --providers.docker.network=traefik
+    networks:
+      - traefik
+      - default
     ports:
       - "80:80"
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - docker4drupal_default
-networks:        
-  docker4drupal_default:
-    external: true
+
+networks:
+  traefik:
+    external:
+      name: traefik
