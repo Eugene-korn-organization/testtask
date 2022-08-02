@@ -1,17 +1,18 @@
 name: Drupal modules checker
 
 on: pull_request
- jobs:
-   drupal-checker:
-     runs-on: ubuntu-latest
+
+jobs:
+ drupal-checker:
+   runs-on: ubuntu-latest
      steps:
-       - name: Checkout
-         uses: actions/checkout@v3
+     - name: Checkout
+       uses: actions/checkout@v3
 
-       - name: Install PHP
-         run: |
-           apt install php8.1-fpm
+     - name: Install PHP
+       run: |
+         apt install php8.1-fpm
 
-       - name: Check coding standards
-         run: |
-           phpcs --standard=Drupal /var/www/html/web/modules
+     - name: Check coding standards
+       run: |
+         phpcs --standard=Drupal /var/www/html/web/modules
