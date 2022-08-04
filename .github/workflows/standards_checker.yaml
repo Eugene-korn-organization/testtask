@@ -12,6 +12,7 @@ jobs:
       - name: Installing PHPCS
         run: |
           cd docker4drupal
+          rm -rf vendor
           composer install
           
       - name: Checking php Drupal standards
