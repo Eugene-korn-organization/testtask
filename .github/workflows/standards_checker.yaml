@@ -11,6 +11,12 @@ jobs:
           
       - name: Install PHPCS
         run: |
-          curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
-          php phpcs.phar --version
-          php phpcs.phar -i
+          composer global require drupal/coder
+          composer global show -P
+          export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+          
+      - name: Checking php Drupal standards
+        run: |
+          phpcs --config-set installed_paths ~/.config/composer/vendor/drupal/coder/coder_sniffer
+          phpcs -i
+          phpcs --standard=Drupal,DrupalPractice web/modules/custom
