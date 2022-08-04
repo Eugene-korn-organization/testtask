@@ -14,10 +14,7 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - run: |
-          npm ci
-          npm -v
-
+      
       - name: ESLint install
         run: npm install yarn
 
