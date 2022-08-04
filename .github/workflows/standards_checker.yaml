@@ -16,6 +16,7 @@ jobs:
           
       - name: Checking php Drupal standards
         run: |
+          ls -la
           cd docker4drupal
           vendor/bin/phpcs -i
           vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom
