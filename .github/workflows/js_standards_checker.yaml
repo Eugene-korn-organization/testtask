@@ -13,11 +13,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm ci
-      - run: npm -v
+    
+
       
       - name: ESLint install
-        run: npm install yarn
+        run: |
+          npm -v
+          npm install yarn
 
       - name: Install ESlint
         run: |
