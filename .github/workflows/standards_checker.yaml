@@ -9,17 +9,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3        
         
-      - name: Installing PHPCS
-        run: |
-          cd docker4drupal
-          rm -rf vendor
-          composer install
+      #- name: Installing PHPCS
+      #  run: |
+      #    cd docker4drupal
+      #    composer install
           
       - name: Checking php Drupal standards
         run: |
           ls -la
           cd docker4drupal
           ls -la
-          ./vendor/bin/phpcs --config-set installed_paths ./vendor/drupal/coder/coder_sniffer
           ./vendor/bin/phpcs -i
           ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom
