@@ -18,5 +18,6 @@ jobs:
           
       - name: Checking php Drupal standards
         run: |
+          cd
           vendor/bin/phpcs -i
           vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom
