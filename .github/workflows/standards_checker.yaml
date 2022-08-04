@@ -19,5 +19,6 @@ jobs:
           ls -la
           cd docker4drupal
           ls -la
+          ./vendor/bin/phpcs --config-set installed_paths ./vendor/drupal/coder/coder_sniffer
           ./vendor/bin/phpcs -i
           ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom
