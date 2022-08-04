@@ -18,7 +18,5 @@ jobs:
           
       - name: Checking php Drupal standards
         run: |
-          phpcs -i
-          phpcs --config-set installed_paths ~/.config/composer/vendor/drupal/coder/coder_sniffer
-          phpcs -i
-          phpcs --standard=Drupal,DrupalPractice web/modules/custom
+          vendor/bin/phpcs -i
+          vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom
