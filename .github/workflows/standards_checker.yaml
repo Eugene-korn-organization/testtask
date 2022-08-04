@@ -11,8 +11,8 @@ jobs:
           
       - name: Install PHPCS
         run: |
-          composer config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-          composer global require drupal/coder
+          cd docker4drupal
+          composer install
           composer global show -P
           export PATH="$PATH:$HOME/.config/composer/vendor/bin"
           
