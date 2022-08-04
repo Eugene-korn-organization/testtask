@@ -12,7 +12,7 @@ jobs:
       - name: Install PHPCS
         run: |
           cd docker4drupal
-          composer install
+          composer install --working-dir=.
           composer global show -P
           export PATH="$PATH:$HOME/.config/composer/vendor/bin"
           
