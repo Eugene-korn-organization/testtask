@@ -1,18 +1,16 @@
-name: Drupal modules checker
+name: Drupal PHP and JS code standards checker
 
 on: pull_request
 
 jobs:
- drupal-checker:
-   runs-on: ubuntu-latest
-   steps:
-   - name: Checkout
-     uses: actions/checkout@v3
-
-   - name: Install PHP
-     run: |
-       apt install php8.1-fpm
-
-   - name: Check coding standards
-     run: |
-       phpcs --standard=Drupal /var/www/html/web/modules
+  phpcs-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+          
+      - name: Install PHPCS
+        run: |
+          curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+          php phpcs.phar --version
+          php phpcs.phar -i
