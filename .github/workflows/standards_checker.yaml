@@ -1,4 +1,4 @@
-name: Drupal PHP and JS code standards checker
+name: Drupal PHP code standards checker
 
 on: pull_request
 
@@ -8,7 +8,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3        
-         
+        
+      - name: Installin PHPCS
+        run: |
+          cd docker4drupal
+          composer install
+          
       - name: Checking php Drupal standards
         run: |
           ls -la
