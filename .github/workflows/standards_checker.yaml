@@ -12,12 +12,10 @@ jobs:
       - name: Install PHPCS
         run: |
           cd docker4drupal
-          composer install --no-dev
-          export PATH="$PATH:$HOME/.config/composer/vendor/bin"
-          
+          composer install --no-dev    
           
       - name: Checking php Drupal standards
         run: |
-          cd
+          cd docker4drupal
           vendor/bin/phpcs -i
           vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom
