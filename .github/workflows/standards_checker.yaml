@@ -9,10 +9,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3        
         
-      #- name: Installing PHPCS
-      #  run: |
-      #    cd docker4drupal
-      #    composer install
+      - name: Installing PHPCS
+        run: |
+          cd docker4drupal
+          rm -rf vendor
+          composer install
           
       - name: Checking php Drupal standards
         run: |
