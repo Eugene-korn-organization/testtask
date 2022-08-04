@@ -11,6 +11,9 @@ jobs:
           
       - name: Install PHPCS
         run: |
+          composer config allow-plugins.composer/installers true
+          composer config allow-plugins.dealerdirect/phpcodesniffer-composer-installer  true
+          composer config allow-plugins.roots/wordpress-core-installer true
           composer global require drupal/coder
           composer global show -P
           export PATH="$PATH:$HOME/.config/composer/vendor/bin"
