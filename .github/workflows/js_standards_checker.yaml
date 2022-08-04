@@ -32,6 +32,4 @@ jobs:
       - name: JS code standards check
         run: |
           ls -la
-          cd docker4drupal
-          ls -la
           yarn eslint web
