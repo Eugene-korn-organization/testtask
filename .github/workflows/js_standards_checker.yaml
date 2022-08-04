@@ -27,9 +27,9 @@ jobs:
           cd docker4drupal
           ls -la
           yarn add --dev eslint-config-drupal-bundle eslint
-          ~/node_modules/yarn/bin/yarn add --dev eslint-config-drupal-bundle eslint
+          
 
       - name: JS code standards check
         run: |
           cd docker4drupal
-          ~/node_modules/yarn/bin/yarn eslint web/core
+          yarn eslint web
