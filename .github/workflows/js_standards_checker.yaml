@@ -23,8 +23,9 @@ jobs:
 
       - name: Install ESlint
         run: |
-          cd docker4drupal/web
-          ls ~/node_modules
+          ls -la
+          cd docker4drupal
+          ls -la
           yarn add --dev eslint-config-drupal-bundle eslint
           ~/node_modules/yarn/bin/yarn add --dev eslint-config-drupal-bundle eslint
 
