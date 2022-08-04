@@ -1,0 +1,32 @@
+name: Drupal JS code standards checker
+
+on: pull_request
+
+jobs:
+  eslint-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Node js installer
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+        run: |
+          npm ci
+          npm -v
+
+      - name: ESLint install
+        run: npm install yarn
+
+      - name: Install ESlint
+        run: |
+          cd docker4drupal/web
+          ~/node_modules/yarn/bin/yarn add --dev eslint-config-drupal-bundle eslint
+
+      - name: JS code standards check
+        run: |
+          cd docker4drupal
+          ~/node_modules/yarn/bin/yarn eslint web/core
