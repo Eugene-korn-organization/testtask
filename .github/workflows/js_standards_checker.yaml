@@ -14,19 +14,30 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - run: |
-          npm ci
+      
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-    
+            
+      - name: Install Yarn
+        run: |
           npm -v
-
-      - name: ESLint install
-        run: npm install yarn
-
+          npm install yarn
       - name: Install ESlint
         run: |
-          cd docker4drupal/web
-          ~/node_modules/yarn/bin/yarn add --dev eslint-config-drupal-bundle eslint
-
+          ls -la
+          cd docker4drupal
+          ls -la
+          yarn add --dev eslint-config-drupal-bundle eslint          
       - name: JS code standards check
         run: |
-          cd docker4drupal
-          ~/node_modules/yarn/bin/yarn eslint web/core
+          ls -la
+          yarn eslint docker4drupal/web/modules/custom docker4drupal/web/themes/custom docker4drupal/web/profiles/custom --no-error-on-unmatched-pattern
