@@ -30,7 +30,7 @@ jobs:
             --report=checkstyle \
             --standard=Drupal,DrupalPractice \
             web/modules/custom |\
-            ~/bin/reviewdog \
+            reviewdog \
             -f="checkstyle" \
             -reporter="github-pr-review" \
             -filter-mode=nofilter -tee 
