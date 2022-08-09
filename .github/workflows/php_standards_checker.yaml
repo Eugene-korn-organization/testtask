@@ -36,4 +36,4 @@ jobs:
             -f="checkstyle" \
             -reporter="github-pr-review" \
             -filter-mode=nofilter -tee 
-          exit=1
+          exit 1
