@@ -26,4 +26,4 @@ jobs:
           cd docker4drupal
           ls -la
           ./vendor/bin/phpcs -i
-          ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom | ~/bin/reviewdog -f="checkstyle" -reporter="github-pr-review" -fail-on-error 
+          ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom | reviewdog -f="checkstyle" -reporter="github-pr-review" -fail-on-error 
