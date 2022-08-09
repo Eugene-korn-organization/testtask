@@ -2,7 +2,9 @@
 
 namespace Drupal\action_example\Plugin\Action;
 
-use Drupal\Core\Access\AccessResult;
+use Drupal\Core\
+  
+  Access\AccessResult;
 use Drupal\Core\Action\ActionBase;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
