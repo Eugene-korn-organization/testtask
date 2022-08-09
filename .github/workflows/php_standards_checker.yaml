@@ -33,5 +33,5 @@ jobs:
             ~/bin/reviewdog \
             -f="checkstyle" \
             -reporter="github-pr-review" \
-            -fail-on-error \
             -filter-mode=nofilter -tee 
+            exit 1
