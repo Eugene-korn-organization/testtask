@@ -9,9 +9,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3        
         
-      - name: phpcs
-        uses: shirobrak/action-phpcs@v1.0.0
+      - name: Installing PHPCS
+        run: |
+          cd docker4drupal
+          rm -rf vendor
+          composer install
+
+      - name: Installing reviewdog
+        uses: reviewdog/action-setup@v1
         with:
-          github_token: ${{ secrets.REVIEW_TOKEN }}
-          reporter: github-pr-review
-          phpcs_flags: '--standard=Drupal,DrupalPractice docker4drupal/web/modules/custom' 
+          reviewdog_version: latest
+
+      - name: Checking php Drupal standards
+        run: |
+          ls -la
+          cd docker4drupal
+          ls -la
+          ./vendor/bin/phpcs -i
+          ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom | ~/bin/reviewdog -f="checkstyle" -reporter="github-pr-review" -fail-on-error 
