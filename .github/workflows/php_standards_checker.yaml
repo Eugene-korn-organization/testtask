@@ -12,6 +12,6 @@ jobs:
       - name: phpcs
         uses: shirobrak/action-phpcs@v1.0.0
         with:
-          github_token: ${{ secrets.REVIEW_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           phpcs_flags: '--standard=Drupal,DrupalPractice docker4drupal/web/modules/custom' 
