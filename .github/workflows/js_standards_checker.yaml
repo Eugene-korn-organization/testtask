@@ -49,5 +49,5 @@ jobs:
           docker4drupal/web/profiles/custom \
           --no-error-on-unmatched-pattern |
           reviewdog -f=eslint -reporter=github-pr-review \
-          fail-on-error
+          -fail-on-error -filter-mode=nofilter -tee
 
