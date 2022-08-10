@@ -50,9 +50,10 @@ jobs:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd docker4drupal
+          pwd
           ls -la
           yarn eslint \
-          web/themes/custom | \
+          ~/testtask/docker4drupal/web/themes/custom | \
           reviewdog -f=eslint -reporter=github-pr-review \
           fail-on-error
 
