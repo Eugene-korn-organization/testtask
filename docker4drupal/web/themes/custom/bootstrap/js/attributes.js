@@ -21,7 +21,6 @@
    *   A rendered string suitable for inclusion in HTML markup.
    */
   Attributes.prototype.toString = function () {
-
     var output = '';
     var name, value;
     var checkPlain = function (str) {
