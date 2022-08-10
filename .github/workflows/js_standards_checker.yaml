@@ -53,7 +53,7 @@ jobs:
           pwd
           ls -la
           yarn eslint \
-          ~/testtask/docker4drupal/web/themes/custom | \
+          ~/work/testtask/docker4drupal/web/themes/custom | \
           reviewdog -f=eslint -reporter=github-pr-review \
           fail-on-error
 
