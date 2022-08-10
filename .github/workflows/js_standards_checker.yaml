@@ -25,6 +25,9 @@ jobs:
           cd docker4drupal
           ls -la
           yarn add --dev eslint-config-drupal-bundle eslint
+          cd ..
+          yarn cache dir
+          yarn config set cache-folder `pwd`
           
       - name: Installing reviewdog
         uses: reviewdog/action-setup@v1
