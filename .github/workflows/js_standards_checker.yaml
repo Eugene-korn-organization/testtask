@@ -8,6 +8,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        
+      - name: Install drupal project
+        run: |
+          cd docker4drupal
+          composer install
 
       - name: Node js installer
         uses: actions/setup-node@v3
@@ -17,8 +22,8 @@ jobs:
       - name: Install Yarn
         run: |
           npm -v
-          npm install yarn         
-      
+          npm install yarn        
+            
       - name: Install ESlint
         run: |
           ls -la
