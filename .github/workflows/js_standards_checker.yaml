@@ -9,6 +9,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install drupal project
+        run: |
+          cd docker4drupal
+          composer install
+
       - name: Node js installer
         uses: actions/setup-node@v3
         with:
@@ -55,5 +60,5 @@ jobs:
           docker4drupal/web/profiles/custom \
           --no-error-on-unmatched-pattern |
           reviewdog -f=eslint -reporter=github-pr-review \
-          fail-on-error
+          -fail-on-error -filter-mode=nofilter -tee
 
