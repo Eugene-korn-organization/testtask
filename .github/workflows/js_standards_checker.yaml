@@ -21,10 +21,6 @@ jobs:
           npm -v
           npm install yarn
           
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
@@ -35,8 +31,6 @@ jobs:
       
       - name: Install ESlint
         run: |
-          ls -la
-          cd docker4drupal
           ls -la
           yarn add --dev eslint-config-drupal-bundle eslint
           
@@ -51,5 +45,5 @@ jobs:
         run: |
           pwd
           ls -la
-          yarn eslint ~/work/testtask/testtask/docker4drupal/web/themes/custom
+          yarn eslint `pwd`/docker4drupal/web/themes/custom
 
