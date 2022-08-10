@@ -20,9 +20,7 @@
    * @return {String}
    *   A rendered string suitable for inclusion in HTML markup.
    */
-  Attributes.prototype.toString = function () {
-
-    var output = '';
+  Attributes.prototype.toString = function () {    var output = '';
     var name, value;
     var checkPlain = function (str) {
       return str && str.toString().replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') || '';
