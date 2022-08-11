@@ -29,6 +29,7 @@ jobs:
           ls -la
           ./vendor/bin/phpcs -i
           ./vendor/bin/phpcs \
+            --extensions=css,inc,install,module,php,profile,test,theme \
             --report=checkstyle \
             --standard=Drupal,DrupalPractice \
             web/modules/custom |\
