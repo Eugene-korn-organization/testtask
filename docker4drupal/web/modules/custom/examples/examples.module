@@ -49,8 +49,9 @@ function examples_toolbar() {
 
       // If there's no info, the example isn't enabled, so don't display it.
       if (!empty($info)) {
-        $links[$module] = [
-          'title' => Html::escape($info['name']),
+      
+             $links[$module] = [
+          'title' => \Drupal\Component\Utility\Html::escape($info['name']),
           'url' => Url::fromRoute($route),
           'attributes' => [
             'class' => [Html::getClass($module)],
