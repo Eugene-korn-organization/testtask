@@ -3,8 +3,9 @@ pipelines:
     master:
       - step:
           name: 'Deploying code to container'
-          image: wodby/drupal-php:8.1-dev-4.37.6
-          run-as-user: 0
+          image: 
+            name: wodby/drupal-php:8.1-dev-4.37.6
+            run-as-user: 0
           script:
             - wget https://github.com/devbranch-vadym/portainerssh/releases/download/v1.6.0/portainerssh-linux-amd64-1.6.0.tar.gz
             - tar -x -f portainerssh-linux-amd64-1.6.0.tar.gz
