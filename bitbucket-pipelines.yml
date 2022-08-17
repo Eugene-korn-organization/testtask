@@ -13,7 +13,9 @@ pipelines:
             - tar -x -f portainerssh-linux-amd64-1.6.0.tar.gz
             - ls -la
             - export PATH="`pwd`:$PATH"
-            - echo "cd testtask/docker4drupal; sh drup_deploy.sh; exit" | portainerssh korn_docker4drupal_test_project_php 
+            - portainerssh --help
+            - echo "cd testtask/docker4drupal; sh drup_deploy.sh; exit" > command
+            - cat command | portainerssh korn_docker4drupal_test_project_php 
 
   pull-requests:
     '**':
