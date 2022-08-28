@@ -6,6 +6,8 @@
 (function ($, Drupal, Bootstrap) {
   'use strict';
 
+  
+  
   /**
    * The list of supported events to proxy.
    *
