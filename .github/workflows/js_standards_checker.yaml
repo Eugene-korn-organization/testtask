@@ -11,7 +11,6 @@ jobs:
 
       - name: Install drupal project
         run: |
-          cd docker4drupal
           composer install
 
       - name: Node js installer
@@ -40,9 +39,6 @@ jobs:
       
       - name: Install ESlint
         run: |
-          ls -la
-          cd docker4drupal
-          ls -la
           yarn add --dev eslint-config-drupal-bundle eslint
           
       - name: Installing reviewdog
@@ -50,15 +46,12 @@ jobs:
         with:
           reviewdog_version: latest
 
-      - name: JS code standards check
+      - name: JS coding standards checking
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls -la
-          yarn eslint docker4drupal/web/modules/custom \
-          docker4drupal/web/themes/custom \
-          docker4drupal/web/profiles/custom \
+          yarn eslint `cat /tmp/git_diff` \
           --no-error-on-unmatched-pattern |
           reviewdog -f=eslint -reporter=github-pr-review \
           -fail-on-error -filter-mode=nofilter -tee
-
+        timeout-minutes: 5

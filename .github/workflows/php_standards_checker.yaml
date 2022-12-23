@@ -13,7 +13,7 @@ jobs:
         run: |
           composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
           composer global require drupal/coder
-          composer install || composer update
+          composer install
 
       - name: Installing reviewdog
         uses: reviewdog/action-setup@v1
