@@ -11,22 +11,24 @@ jobs:
         
       - name: Installing PHPCS
         run: |
-          cd docker4drupal
-          rm -rf vendor
-          composer install
+          composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+          composer global require drupal/coder
+          composer install || composer update
 
       - name: Installing reviewdog
         uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
+      
+      - name: Configuring diff file.
+        run: |
+          git config --global --add safe.directory .
+          git diff --name-only -r origin/$GITHUB_BASE_REF..$GITHUB_REF | grep -e web/modules/custom -e web/themes/custom | tr "\n" " " > /tmp/git_diff
 
       - name: Checking php Drupal standards
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls -la
-          cd docker4drupal
-          ls -la
           ./vendor/bin/phpcs -i
           ./vendor/bin/phpcs \
             --extensions=css,inc,install,module,php,profile,test,theme \
@@ -38,3 +40,4 @@ jobs:
             -reporter="github-pr-review" \
             -fail-on-error \
             -filter-mode=nofilter -tee 
+        timeout-minutes: 5
