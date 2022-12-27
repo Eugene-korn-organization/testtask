@@ -33,7 +33,7 @@ jobs:
           ./vendor/bin/phpcs \
             --extensions=css,inc,install,module,php,profile,test,theme \
             --report=checkstyle \
-            --standard=Drupal,DrupalPractice \
+            --standard=.github/ci/phpcs.xml \
             web/modules/custom |\
             reviewdog \
             -f="checkstyle" \
