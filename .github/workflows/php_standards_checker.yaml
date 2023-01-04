@@ -34,15 +34,5 @@ jobs:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ~/.composer/vendor/bin/phpcs -i
-          ~/.composer/vendor/bin/phpcs \
-            --extensions=css,inc,install,module,php,profile,test,theme \
-            --report=checkstyle \
-            --standard=Drupal,DrupalPractice \
-            `cat /tmp/check` |\
-            reviewdog \
-            -f="checkstyle" \
-            -name="PHPCS" \
-            -reporter="github-pr-review" \
-            -fail-on-error \
-            -filter-mode=nofilter -tee 
+          /bin/bash ./.github/scripts/phpcs_code_checking.sh
         timeout-minutes: 5
