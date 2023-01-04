@@ -6,6 +6,8 @@
 
   Bootstrap.Dialog = Bootstrap.Dialog || {};
 
+  
+  
   /**
    * A collection of Drupal dialog handlers.
    *
