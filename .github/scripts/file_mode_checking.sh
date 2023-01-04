@@ -6,6 +6,7 @@ NO_COLOR='\033[0m'
 FILES=$(git diff --name-only -r origin/$GITHUB_BASE_REF origin/$GITHUB_HEAD_REF)
 
 if [[ "$FILES" == "" ]]; then
+  printf "${GREEN} Mode for all files is OK. ${NO_COLOR}"
   exit 0;
 fi
 
