@@ -2,6 +2,8 @@
 
 namespace Drupal\examples\Utility;
 
+
+
 /**
  * Trait to implement a "drop-in" template for Example's controllers.
  *
