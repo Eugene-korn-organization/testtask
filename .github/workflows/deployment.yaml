@@ -27,6 +27,6 @@ jobs:
           export GITHUB_REPO_URL=https://github.com/$GITHUB_REPOSITORY
           echo "export GITHUB_SHA=$GITHUB_SHA  &&\
                 export GITHUB_REPO_URL=$GITHUB_REPO_URL &&\
-                export DUMP_NAME=$GITHUB_HEAD_REF &&\
+                export DUMP_NAME=$GITHUB_REF_NAME &&\
                 ./.github/scripts/drup_deploy_gh.sh; exit" | ./portainerssh $CONTAINER
         timeout-minutes: 5
