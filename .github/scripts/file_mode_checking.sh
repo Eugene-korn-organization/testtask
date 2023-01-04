@@ -3,7 +3,7 @@ RED='\033[0;31m'
 NO_COLOR='\033[0m'
 
 ### Prepare list of the files in this commit.
-FILES=$(git diff --name-only -r origin/$BITBUCKET_PR_DESTINATION_BRANCH..$BITBUCKET_BRANCH)
+FILES=$(git diff --name-only -r origin/$GITHUB_BASE_REF origin/$GITHUB_HEAD_REF)
 
 if [[ "$FILES" == "" ]]; then
   exit 0;
