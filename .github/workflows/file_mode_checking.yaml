@@ -1,0 +1,17 @@
+name: File mode checking
+
+on: pull_request
+
+jobs:
+  File_mode_checking:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+        
+      - name: File mode checking
+        run: |
+          /bin/bash ./.github/scripts/file_mode_checking.sh
+        timeout-minutes: 5
