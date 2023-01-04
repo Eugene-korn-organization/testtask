@@ -3,7 +3,7 @@ name: File mode checking
 on: pull_request
 
 jobs:
-  phpcs-checker:
+  File_mode_checking:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
