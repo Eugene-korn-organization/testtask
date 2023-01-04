@@ -23,7 +23,9 @@ jobs:
       - name: Configuring diff file.
         run: |
           git config --global --add safe.directory .
-          git diff --name-only -r origin/$GITHUB_BASE_REF..$GITHUB_REF | grep -e web/modules/custom -e web/themes/custom | tr "\n" " " > /tmp/git_diff
+          git diff --name-only -r origin/$GITHUB_BASE_REF origin/$GITHUB_HEAD_REF |\
+          grep -e web/modules/custom -e web/themes/custom -e web/profiles/custom |\
+          tr "\n" " " > /tmp/check
 
       - name: Checking php Drupal standards
         env:
@@ -34,9 +36,10 @@ jobs:
             --extensions=css,inc,install,module,php,profile,test,theme \
             --report=checkstyle \
             --standard=Drupal,DrupalPractice \
-            web/modules/custom |\
+            `cat /tmp/check` |\
             reviewdog \
             -f="checkstyle" \
+            -name="PHPCS"
             -reporter="github-pr-review" \
             -fail-on-error \
             -filter-mode=nofilter -tee 
