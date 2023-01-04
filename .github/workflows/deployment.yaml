@@ -12,14 +12,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Installing PortainerSSH
+      - name: Installing the PortainerSSH
         run: |
-          wget https://github.com/devbranch-vadym/portainerssh/releases/download/v1.6.0/portainerssh-linux-amd64-1.6.0.tar.gz
-          tar -x -f portainerssh-linux-amd64-1.6.0.tar.gz  
+          wget https://github.com/devbranch-vadym/portainerssh/releases/download/v1.6.0/portainerssh-linux-amd64-1.7.0.tar.gz
+          tar -x -f portainerssh-linux-amd64-1.7.0.tar.gz  
 
       - name: Launch a deployment script
         env:
           PORTAINER_API_URL: https://portainer.devbranch.work/api
           PORTAINER_USER: ${{ secrets.PORTAINERSSH_USER }}
           PORTAINER_PASSWORD: ${{ secrets.PORTAINERSSH_PASS }}
-        run: echo "cd testtask/docker4drupal; sh drup_deploy_gh.sh; exit" | ./portainerssh korn_docker4drupal_test_project_php
+          CONTAINER: korn_docker4drupal_test_project_php
+        run: |
+          export GITHUB_REPO_URL=https://github.com/$GITHUB_REPOSITORY
+          echo "export GITHUB_SHA=$GITHUB_SHA  &&\
+                export GITHUB_REPO_URL=$GITHUB_REPO_URL &&\
+                export DUMP_NAME=$GITHUB_HEAD_REF &&\
+                ./scripts/drup_deploy_gh.sh; exit" | ./portainerssh $CONTAINER
+        timeout-minutes: 5
