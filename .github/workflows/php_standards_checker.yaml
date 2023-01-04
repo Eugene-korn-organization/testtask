@@ -41,7 +41,7 @@ jobs:
             `cat /tmp/check` |\
             reviewdog \
             -f="checkstyle" \
-            -name="PHPCS"
+            -name="PHPCS" \
             -reporter="github-pr-review" \
             -fail-on-error \
             -filter-mode=nofilter -tee 
