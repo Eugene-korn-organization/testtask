@@ -1,5 +1,9 @@
 #!/bin/bash
 
+CLOUDFLARE_ZONE_ID=$CLOUDFLARE_ZONE_ID
+CLOUDFLARE_AUTH_EMAIL=$CLOUDFLARE_AUTH_EMAIL
+CLOUDFLARE_API_KEY=$CLOUDFLARE_API_KEY
+
 # Turn on Drupal maintenance mode
 drush sset system.maintenance_mode TRUE
 
@@ -106,6 +110,13 @@ drush sset system.maintenance_mode FALSE
 
 # Clear caches
 drush cr
+
+# Flush Cloudflare Caches
+curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
+     -H "X-Auth-Email: $CLOUDFLARE_AUTH_EMAIL" \
+     -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+     -H "Content-Type: application/json" \
+     --data '{"purge_everything":true}'
 
 echo
 echo
